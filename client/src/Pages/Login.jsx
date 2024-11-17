@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { setCredentials } from '../utils/authSlice'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { io } from 'socket.io-client'
 
 export let socket;
@@ -50,12 +50,14 @@ export const Login = () => {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div style={{display: "flex", flexDirection: "column", marginLeft: "550px", marginTop: "50px"}}>
+      <h3>Login</h3>
+      <form onSubmit={handleSubmit} style={{display: "flex", flexDirection: "column", alignItems: 'baseline'}}>
         <input type='email' value={email} onChange={(e) => setEmail(e.target.value)} />
         <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
         <button type='submit' style={{cursor: "pointer"}}>Login</button>
       </form>
+      <p>Do you have an account? <Link to='/signup'>Signup</Link></p>
     </div>
   )
 }

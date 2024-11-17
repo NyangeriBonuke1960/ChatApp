@@ -43,10 +43,10 @@ io.on('connection', (socket) => {
         socket.leave(roomName)
     })
 
-    socket.on('privateMessage', ({userId, id, text}) => {
+    socket.on('privateMessage', ({userId, id, userName, text}) => {
         const roomName = [userId, id].sort().join('_')
         console.log(text)
-        io.to(roomName).emit('receiveMessage', {userId, id, text})
+        io.to(roomName).emit('receiveMessage', {userId, id, userName, text})
     })
 })
 
